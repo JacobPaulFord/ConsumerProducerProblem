@@ -12,7 +12,7 @@ int main(){
     std::this_thread::sleep_for(std::chrono::seconds(2));
     sem_t *my_semaphore = sem_open("/betweenProcess", 0);
     if(my_semaphore == SEM_FAILED){
-        cout << "file 1 sem failed" << endl;
+        cout << "file 2 sem failed" << endl;
         return 1;
     }
 
@@ -23,5 +23,9 @@ int main(){
     cout << "In file 2 end" << endl;
 
     sem_post(my_semaphore);
+    
+    sem_close(my_semaphore);
+
+    return 0;
 
 }
