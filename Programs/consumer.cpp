@@ -77,6 +77,7 @@ int main(){
         if(getChar[(i%2)] == '\0'){  //when it gets this character, message is done, and will send signal to close connections
             cout << result << endl;
             *getCounter = -1;
+            sem_post(my_semaphore);
             break;
         }
 

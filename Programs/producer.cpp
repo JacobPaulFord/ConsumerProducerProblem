@@ -83,16 +83,38 @@ int main(){
         sem_post(my_semaphore);
     }
 
+
     //send termination character
-    while(*getCounter == maxBufferHold) {std::this_thread::sleep_for(std::chrono::seconds(1));}
+    sem_wait(my_semaphore);
+            int counter = *getCounter;
+    sem_post(my_semaphore);
+
+    while(counter == maxBufferHold) {
+            cout  << "Full" << endl; std::this_thread::sleep_for(std::chrono::seconds(2));
+
+            sem_wait(my_semaphore);
+            counter = *getCounter;
+            sem_post(my_semaphore);
+    }
 
     sem_wait(my_semaphore);
         addChar[(toProduce.size()%2)] = '\0';
+        cout << "done sending" << endl;
         *getCounter += 1;
     sem_post(my_semaphore);
 
     //waits for signal that consumer is done, then lets consumer close connections before closing shared memory
-    while(*getCounter != -1) {std::this_thread::sleep_for(std::chrono::seconds(1));}
+    sem_wait(my_semaphore);
+            counter = *getCounter;
+    sem_post(my_semaphore);
+
+    while(counter != -1) {
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+
+            sem_wait(my_semaphore);
+            counter = *getCounter;
+            sem_post(my_semaphore);
+    }
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
     //closing and unlinking semaphore 
