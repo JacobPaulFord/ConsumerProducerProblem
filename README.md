@@ -21,11 +21,15 @@ To compile and run:
 
 Documentation Folder:
 
+
   documentation.txt - A description of how the programs operate and the key concepts and ideas implemented. 
   
   Examples&Results.pdf - a screanshot showing what an example output would be if programs are compled and run correctly
 
+  
+
 Programs Folder:
+
 
   consumer.cpp - A C++ file that recived information from the shared memory and prints it out to the terminal when it has collected all of the information. 
   
