@@ -1,5 +1,7 @@
 # ConsumerProducerProblem
+Created by Jacob Paul Ford
 For OS assignment 1
+Course number CS-33211-001
 
 To compile and run:
 
